@@ -1,18 +1,15 @@
-DELIMITER//
-USE test//
+DELIMITER //
+USE test //
 
-DROP Procedure IF EXISITS 'UserLogin'//
+DROP Procedure IF EXISTS UserLogin//
 
-CREATE Procedure 'UserLogin'(
- 	@uname		[varchar(30)],
- 	@pass		[varchar(32)],
- 	@out		int OUTPUT]
+CREATE Procedure UserLogin(
+ 	IN uname		char(30),
+ 	IN pass		char(32),
+ 	OUT outp	INT
 )
-IN Users
 BEGIN 
-	IF(SELECT Count(*) FROM Users WHERE Users.Username = @uname AND Users.Password = @pass)<>1
-	BEGIN
-		RETURN 401
-	END
-	RETURN 500
-END
+	IF(SELECT Count(*) FROM Users WHERE Users.Username = uname AND Users.Password = pass)<>1
+    THEN RETURN 401;
+	RETURN 500;
+END//
