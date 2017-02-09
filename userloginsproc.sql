@@ -5,8 +5,7 @@ DROP Procedure IF EXISTS `UserLogin`//
 
 CREATE Procedure `UserLogin`(
  	IN uname char(30),
- 	IN pass	char(32),
- 	OUT outp INT
+ 	IN pass	char(32)
 )
 BEGIN 
 	DECLARE count SMALLINT;
