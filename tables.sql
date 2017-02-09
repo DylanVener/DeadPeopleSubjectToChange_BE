@@ -11,7 +11,7 @@ CREATE TABLE Characters (
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users (
     Uname VARCHAR(30) NOT NULL,
-    Password CHAR(32) NOT NULL,
+    Pass_word CHAR(32) NOT NULL,
     Role VARCHAR(30) NOT NULL,
     PRIMARY KEY(Uname)
 );
