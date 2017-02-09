@@ -11,8 +11,10 @@ BEGIN
 	DECLARE count SMALLINT;
     SET count = (SELECT Count(*) FROM Users WHERE Username = uname);
 	IF(count)>0
-    THEN SELECT outp= 409;
+    THEN SELECT 409;
     ELSE
-		SELECT outp= 500;
+		INSERT INTO Users (Username, Password)
+        VALUES(uname,pass);
+		SELECT 500;
         END IF;
         END //

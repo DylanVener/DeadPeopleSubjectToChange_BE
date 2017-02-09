@@ -12,8 +12,8 @@ BEGIN
 	DECLARE count SMALLINT;
     SET count = (SELECT Count(*) FROM Users WHERE Username = uname AND Users.`Password` = pass);
 	IF(count)<>1
-    THEN SELECT outp= 401;
+    THEN SELECT 401;
     ELSE
-		SELECT outp= 500;
+		SELECT 500;
         END IF;
         END //
