@@ -1,14 +1,19 @@
 DELIMITER //
 USE test //
 
-DROP Procedure IF EXISTS UserLogin//
+DROP Procedure IF EXISTS `UserLogin`//
 
-CREATE Procedure UserLogin(
- 	IN uname		char(30),
- 	IN pass		char(32),
- 	OUT outp	INT
+CREATE Procedure `UserLogin`(
+ 	IN uname char(30),
+ 	IN pass	char(32),
+ 	OUT outp INT
 )
 BEGIN 
-	IF(SELECT Count(*) FROM Users WHERE Users.Username = uname AND Users.Password = pass)<>1
+	DECLARE count SMALLINT;
+    SET count = (SELECT Count(*) FROM Users WHERE Username = uname AND Users.`Password` = pass);
+	IF(count)<>1
     THEN set outp= 401;
-	Set outp= 500;
+    ELSE
+		Set outp= 500;
+        END IF;
+        END //
