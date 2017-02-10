@@ -56,6 +56,7 @@ def createUser():
     password =  bleach.clean(data['password'])
     cursor.callproc('UserCreate', [username,password])
     returned = list(cursor.fetchone().keys())[0]
+    cursor.commit()
     cursor.close()
     con.close()
     if returned == '500':
