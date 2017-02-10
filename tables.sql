@@ -1,4 +1,4 @@
-USE test2;
+USE test
 
 DROP TABLE IF EXISTS Characters;
 CREATE TABLE Characters (
@@ -10,10 +10,10 @@ CREATE TABLE Characters (
 
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users (
-    Uname VARCHAR(30) NOT NULL,
-    Pass_word CHAR(32) NOT NULL,
+    Username VARCHAR(30) NOT NULL,
+    Password CHAR(32) NOT NULL,
     Role VARCHAR(30) NOT NULL,
-    PRIMARY KEY(Uname)
+    PRIMARY KEY(Username)
 );
 
 DROP TABLE IF EXISTS Kills;
@@ -30,14 +30,14 @@ CREATE TABLE Kills (
 
 DROP TABLE IF EXISTS Ratings;
 CREATE TABLE Ratings (
-    Uname VARCHAR(30) NOT NULL,
+    Username VARCHAR(30) NOT NULL,
     KID MEDIUMINT NOT NULL,
     Value INT,
-    FOREIGN KEY (Uname)
-    REFERENCES Users(Uname),
+    FOREIGN KEY (Username)
+    REFERENCES Users(Username),
     FOREIGN KEY (KID)
     REFERENCES Kills(ID),
-    CONSTRAINT unID PRIMARY KEY(Uname, KID)
+    CONSTRAINT unID PRIMARY KEY(Username, KID)
 );
 
 DROP TABLE IF EXISTS Publishers;
