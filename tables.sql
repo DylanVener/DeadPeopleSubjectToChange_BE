@@ -1,4 +1,4 @@
-USE test;
+USE test
 
 DROP TABLE IF EXISTS Characters;
 CREATE TABLE Characters (
@@ -10,22 +10,10 @@ CREATE TABLE Characters (
 
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users (
-    Uname VARCHAR(30) NOT NULL,
-    Pass_word CHAR(32) NOT NULL,
+    Username VARCHAR(30) NOT NULL,
+    Password CHAR(32) NOT NULL,
     Role VARCHAR(30) NOT NULL,
-    PRIMARY KEY(Uname)
-);
-
-DROP TABLE IF EXISTS Ratings;
-CREATE TABLE Ratings (
-    Uname VARCHAR(30) NOT NULL,
-    KID MEDIUMINT NOT NULL,
-    Value INT,
-    FOREIGN KEY (Uname)
-    REFERENCES Users(Uname),
-    FOREIGN KEY (KID)
-    REFERENCES Kills(ID)
-    PRIMARY KEY(Uname, ID)
+    PRIMARY KEY(Username)
 );
 
 DROP TABLE IF EXISTS Kills;
@@ -36,15 +24,27 @@ CREATE TABLE Kills (
     FOREIGN KEY (KillerID)
     REFERENCES Characters(ID),
     FOREIGN KEY (KilledID)
-    REFERENCES Characters(ID)
+    REFERENCES Characters(ID),
     PRIMARY KEY(ID)
+);
+
+DROP TABLE IF EXISTS Ratings;
+CREATE TABLE Ratings (
+    Username VARCHAR(30) NOT NULL,
+    KID MEDIUMINT NOT NULL,
+    Value INT,
+    FOREIGN KEY (Username)
+    REFERENCES Users(Username),
+    FOREIGN KEY (KID)
+    REFERENCES Kills(ID),
+    CONSTRAINT unID PRIMARY KEY(Username, KID)
 );
 
 DROP TABLE IF EXISTS Publishers;
 CREATE TABLE Publishers (
 	P_name VARCHAR(30),
 	H_name VARCHAR(30),
-	PRIMARY KEY(Pub_name)
+	PRIMARY KEY(P_name)
 );
 
 DROP TABLE IF EXISTS Universes;
@@ -67,17 +67,17 @@ CREATE TABLE Series (
 	FOREIGN KEY (P_name)
 	REFERENCES Publishers(P_name),
 	PRIMARY KEY (S_name)
-)
+);
 
 DROP TABLE IF EXISTS CharacterSeries;
 CREATE TABLE CharacterSeries (
 	S_name VARCHAR(30),
-	C_ID VARCHAR(30),
+	C_ID MEDIUMINT,
 	FOREIGN KEY (S_name)
 	REFERENCES Series(S_name),
 	FOREIGN KEY (C_ID)
-	REFERENCES Character(ID),
-	PRIMARY KEY(S_name, C_ID)
+	REFERENCES Characters(ID),
+	CONSTRAINT sc_ID PRIMARY KEY (S_name, C_ID)
 );
 
 
