@@ -1,9 +1,12 @@
 DELIMITER //
-CREATE PROCEDURE `seriescreate` (
-	S_name_1 VARCHAR(30),
-	C_ID_1 MEDIUMINT
+
+USE test //
+
+DROP Procedure IF EXISTS `SeriesCreate`//
+
+CREATE Procedure `SeriesCreate`(
+ 	sname varchar(30), uname varchar(30),pname varchar(30)
 )
 BEGIN
-	INSERT INTO Ratings(S_name, C_ID)
-	VALUES(S_name_1, C_ID_1);
-END //
+	INSERT INTO `Publishers`(S_name,U_Name,P_name) VALUES (sname,uname,pname);
+END
