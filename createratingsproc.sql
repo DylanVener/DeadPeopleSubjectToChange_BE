@@ -1,5 +1,5 @@
 DELIMITER //
-CREATE PROCEDURE `createratingproc` (
+CREATE PROCEDURE `ratingcreate` (
 	IN Uname_1 varchar(30), 
 	KID_1 mediumint,
 	Value_1 int
