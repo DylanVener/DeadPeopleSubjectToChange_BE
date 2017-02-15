@@ -42,42 +42,42 @@ CREATE TABLE Ratings (
 
 DROP TABLE IF EXISTS Publishers;
 CREATE TABLE Publishers (
-	P_name VARCHAR(30),
-	H_name VARCHAR(30),
-	PRIMARY KEY(P_name)
+    P_name VARCHAR(30),
+    H_name VARCHAR(30),
+    PRIMARY KEY(P_name)
 );
 
 DROP TABLE IF EXISTS Universes;
 CREATE TABLE Universes (
-	U_name VARCHAR(30),
-	Size VARCHAR(30),
-	P_name VARCHAR(30),
-	FOREIGN KEY (P_name)
-	REFERENCES Publishers(P_name),
-	PRIMARY KEY (U_name)
+    U_name VARCHAR(30),
+    Size VARCHAR(30),
+    P_name VARCHAR(30),
+    FOREIGN KEY (P_name)
+    REFERENCES Publishers(P_name),
+    PRIMARY KEY (U_name)
 );
 
 DROP TABLE IF EXISTS Series;
 CREATE TABLE Series (
-	S_name VARCHAR(30),
-	U_name VARCHAR(30),
-	P_name VARCHAR(30),
-	FOREIGN KEY (U_name)
-	REFERENCES Universes(U_name),
-	FOREIGN KEY (P_name)
-	REFERENCES Publishers(P_name),
-	PRIMARY KEY (S_name)
+    S_name VARCHAR(30),
+    U_name VARCHAR(30),
+    P_name VARCHAR(30),
+    FOREIGN KEY (U_name)
+    REFERENCES Universes(U_name),
+    FOREIGN KEY (P_name)
+    REFERENCES Publishers(P_name),
+    PRIMARY KEY (S_name)
 );
 
 DROP TABLE IF EXISTS CharacterSeries;
 CREATE TABLE CharacterSeries (
-	S_name VARCHAR(30),
-	C_ID MEDIUMINT,
-	FOREIGN KEY (S_name)
-	REFERENCES Series(S_name),
-	FOREIGN KEY (C_ID)
-	REFERENCES Characters(ID),
-	CONSTRAINT sc_ID PRIMARY KEY (S_name, C_ID)
+    S_name VARCHAR(30),
+    C_ID MEDIUMINT,
+    FOREIGN KEY (S_name)
+    REFERENCES Series(S_name),
+    FOREIGN KEY (C_ID)
+    REFERENCES Characters(ID),
+    CONSTRAINT sc_ID PRIMARY KEY (S_name, C_ID)
 );
 
 

@@ -26,6 +26,36 @@ def main():
     return 'Hello, World!'
 
 @cross_origin()
+@app.route('/update', methods=['GET'])
+def cape_search():
+    con = mysql.connect()
+    cursor = con.cursor()
+
+    username = get_jwt_identity()
+    cursor.callproc('sp_validate',[username])
+    userType = list(cursor.fetchone().keys())[0]
+    if userType != 'admin':
+        return jsonify({'failure':'Incorrect Permissions'}), 401
+
+    data = request.get_json()
+
+    inputs = bleach.clean(data['name'])
+    types = bleach.clean(data['type'])
+    if types == 'cape':
+        cursor.callproc('sp_searchCapes',[inputs])
+    elif types == 'universe':
+        cursor.callproc('sp_searchUniverse',[inputs])
+    elif types == 'publisher':
+        cursor.callproc('sp_searchPublisher',[inputs])
+    elif types == 'series':
+        cursor.callproc('sp_searchSeries',[inputs])
+    ret = cursor.fetchall()
+    print(ret)
+    cursor.close()
+    con.close()
+    return jsonify(ret), 200
+
+@cross_origin()
 @app.route('/search', methods=['GET'])
 def cape_search():
     con = mysql.connect()
@@ -39,6 +69,10 @@ def cape_search():
     elif types == 'publisher':
         cursor.callproc('sp_searchPublisher',[inputs])
     elif types == 'series':
+        cursor.callproc('sp_searchSeries',[inputs])
+    elif types == 'kills':
+        cursor.callproc('sp_searchSeries',[inputs])
+    elif types == 'charSeries':
         cursor.callproc('sp_searchSeries',[inputs])
     ret = cursor.fetchall()
     print(ret)
@@ -57,9 +91,7 @@ def createUser():
     cursor.callproc('UserCreate', [username,password])
     returned = list(cursor.fetchone().keys())[0]
     con.commit()
-    cursor.close()
-    con.close()
-    if returned == '500':
+    cursor.close() con.close() if returned == '500':
         ret = {'access_token' : create_access_token(identity=username)}
         return jsonify(ret), 200
     else:
