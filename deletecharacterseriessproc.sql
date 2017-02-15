@@ -9,5 +9,5 @@ CREATE PROCEDURE `CharacterSeriesDelete` (
 )
 BEGIN
 	DELETE FROM CharacterSeries
-	WHERE S_name = S_name_1 AND C_D = C_ID_1;
+	WHERE S_name = S_name_1 AND C_ID = C_ID_1;
 END //

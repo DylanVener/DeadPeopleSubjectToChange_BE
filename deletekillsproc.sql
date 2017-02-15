@@ -1,0 +1,12 @@
+DELIMITER //
+Use test //
+
+DROP PROCEDURE IF EXISTS `KillDelete`//
+
+CREATE PROCEDURE `KillDelete` (
+	IN ID_1 MEDIUMINT
+)
+BEGIN
+	DELETE FROM Kills
+	WHERE ID = ID_1;
+END //
