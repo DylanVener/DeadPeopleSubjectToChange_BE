@@ -4,7 +4,7 @@ USE test //
 DROP Procedure IF EXISTS `CharacterCreate`//
 
 CREATE Procedure `CharacterCreate`(
- 	cname varchar(30), pname varchar(30), id mediumint 
+ 	IN cname varchar(30), IN pname varchar(30), IN id mediumint 
 )
 BEGIN
 	INSERT INTO `Characters`(ID,P_Name,C_name) VALUES (id, pname, cname);
