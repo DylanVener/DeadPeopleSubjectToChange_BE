@@ -1,4 +1,7 @@
 DELIMITER //
+Use test //
+
+DROP PROCEDURE IF EXISTS `universecreate`//
 CREATE PROCEDURE `universecreate` (
 	IN U_name_1 varchar(30), 
 	Size_1 varchar(30),

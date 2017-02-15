@@ -1,4 +1,8 @@
 DELIMITER //
+Use test //
+
+DROP PROCEDURE IF EXISTS `ratingcreate`//
+
 CREATE PROCEDURE `ratingcreate` (
 	IN Uname_1 varchar(30), 
 	KID_1 mediumint,

@@ -1,4 +1,8 @@
 DELIMITER //
+Use test //
+
+DROP PROCEDURE IF EXISTS `seriescreate`//
+
 CREATE PROCEDURE `seriescreate` (
 	S_name_1 VARCHAR(30),
 	C_ID_1 MEDIUMINT
