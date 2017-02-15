@@ -1,12 +1,12 @@
 DELIMITER //
 Use test //
 
-DROP PROCEDURE IF EXISTS `ratingcreate`//
+DROP PROCEDURE IF EXISTS `RatingCreate`//
 
-CREATE PROCEDURE `ratingcreate` (
+CREATE PROCEDURE `RatingCreate` (
 	IN Uname_1 varchar(30), 
-	KID_1 mediumint,
-	Value_1 int
+	IN KID_1 mediumint,
+	IN Value_1 int
 )
 BEGIN
 	INSERT INTO Ratings(Username, KID, Value)
