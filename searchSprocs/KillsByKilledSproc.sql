@@ -9,6 +9,6 @@ CREATE PROCEDURE `KillsSearchByKilledID` (
 BEGIN
 	SELECT * 
     FROM Kills
-    WHERE KilledID = killed
+    WHERE KilledID = killed;
 END //
 
