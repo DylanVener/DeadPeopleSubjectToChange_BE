@@ -3,7 +3,8 @@ from bleach import clean
 from flask.ext.mysql import MySQL
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
 from flask_cors import CORS, cross_origin
-from pymysql.cursors import DictCursor, escape_string
+from pymysql.cursors import DictCursor
+from pymysql import escape_string
 
 
 mysql = MySQL(cursorclass=DictCursor)
