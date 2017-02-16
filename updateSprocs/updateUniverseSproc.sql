@@ -8,16 +8,18 @@ CREATE Procedure `UniversesUpdate`(
 )
 BEGIN
 	IF (SELECT COUNT(*) FROM `Universes` WHERE U_name = uname) = 0
-    THEN
-		SELECT '404'
+    THEN BEGIN
+	    	SELECT '404'
+            END IF
     ELSE 
+        BEGIN
 		UPDATE `Ratings` 
 		SET 
 			`Size` = size,
 			`P_name` = pname,
             `Img_URL`=url
 		WHERE
-			`U_name` = uname;
-			SELECT '200';
-		END IF;
-END;
+			`U_name` = uname//
+			SELECT '200'//
+		END IF//
+END//
