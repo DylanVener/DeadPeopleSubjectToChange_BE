@@ -2,7 +2,7 @@ DELIMITER //
 Use test //
 CREATE VIEW KillDetails AS
     SELECT 
-        k.KID AS Kill_ID,
+        k.ID AS Kill_ID,
         k.KillerID AS KillerID,
         k.Killed_ID AS Killed_ID,
         c1.C_name AS Killed_Name,
@@ -14,4 +14,4 @@ CREATE VIEW KillDetails AS
         JOIN Characters AS c2 ON k.KillerID = c2.ID)
             JOIN
         Ratings AS r ON k.ID = r.KID
-    GROUP BY k.KID;
+    GROUP BY k.ID;
