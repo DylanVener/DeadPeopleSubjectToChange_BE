@@ -4,7 +4,7 @@ USE test //
 DROP Procedure IF EXISTS `KillUpdate`//
 
 CREATE Procedure `KillUpdate`(
- 	IN killid mediumint, IN Killer mediumint, IN Killed mediumint
+ 	IN killid mediumint, IN Killer mediumint, IN Killed mediumint, IN diedinissue varchar(50), IN description varchar(255)
 )
 BEGIN
 	IF (SELECT COUNT(*) FROM `Kills` WHERE ID = id) = 0
@@ -17,7 +17,9 @@ BEGIN
 		UPDATE `Kills` 
 		SET 
 			`KillerID` = Killer,
-			`KilledID` = Killed
+			`KilledID` = Killed,
+            `Issue` = diedinissue,
+            `Desc` = description
 		WHERE
 			`ID` = killid;
 			SELECT '200';
