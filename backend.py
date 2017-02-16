@@ -57,6 +57,7 @@ def create():
     elif types == 'rating':
         cursor.callproc('RatingsCreate',inputs)
     ret = cursor.fetchall()
+    con.commit()
     cursor.close()
     con.close()
     return jsonify(ret), 200
@@ -93,6 +94,7 @@ def update():
     elif types == 'rating':
         cursor.callproc('RatingsUpdate',inputs)
     ret = cursor.fetchall()
+    con.commit()
     cursor.close()
     con.close()
     return jsonify(ret), 200
@@ -129,6 +131,7 @@ def delete():
     elif types == 'rating':
         cursor.callproc('RatingsDelete',inputs)
     ret = cursor.fetchall()
+    con.commit()
     cursor.close()
     con.close()
     return jsonify(ret), 200
@@ -141,17 +144,28 @@ def search():
     inputs = clean(request.args.get('name'))
     types = clean(request.args.get('type'))
     if types == 'cape':
-        cursor.callproc('sp_searchCapes',[inputs])
+        cursor.callproc('searchcapesproc',[inputs])
     elif types == 'universe':
-        cursor.callproc('sp_searchUniverse',[inputs])
+        cursor.callproc('searchuniversesproc',[inputs])
     elif types == 'publisher':
-        cursor.callproc('sp_searchPublisher',[inputs])
+        cursor.callproc('searchpublishersproc',[inputs])
     elif types == 'series':
-        cursor.callproc('sp_searchSeries',[inputs])
-    elif types == 'kills':
-        cursor.callproc('sp_searchKills',[inputs])
-    elif types == 'charSeries':
-        cursor.callproc('sp_searchCharSeries',[inputs])
+        cursor.callproc('searchseriessproc',[inputs])
+    elif types == 'killsByVic':
+        cursor.callproc('KillsByKilledSproc',[inputs])
+    elif types == 'killsByKiller':
+        cursor.callproc('KillsByKilleSproc',[inputs])
+    elif types == 'charSeriesPub':
+        cursor.callproc('searchcharseriessproc',[inputs])
+    elif types == 'charBySeries':
+        cursor.callproc('SearchChararacterBySerieSproc',[inputs])
+    elif types == 'seriesByUniverse':
+        cursor.callproc('SearchSeriesByUniverseSproc',[inputs])
+    elif types == 'seriesByPub':
+        cursor.callproc('SearchSeriesByPublisherSproc',[inputs])
+    elif types == 'universeByPub':
+        cursor.callproc('SearchUniverseByPublisherSproc',[inputs])
+
     ret = cursor.fetchall()
     cursor.close()
     con.close()
@@ -185,10 +199,10 @@ def login():
     username = clean(data['username'])
     password =  clean(data['password'])
     cursor.callproc('UserLogin', [username,password])
-    returned = list(cursor.fetchone().keys())[0]
+    returned = list(cursor.fetchone().values())[0]
 
-    if returned == '500':
-        ret = {'access_token' : create_access_token(identity=username)}
+    if returned != '401':
+        ret = {'access_token' : create_access_token(identity=username), 'role':returned}
         return jsonify(ret), 200
     else:
         return jsonify({'failure' : 'Failed to Login'}), 401
