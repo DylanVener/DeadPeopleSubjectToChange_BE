@@ -9,5 +9,5 @@ CREATE Procedure `validate`(
 BEGIN
 	SELECT Role
     FROM Users
-    WHERE Username = uname
+    WHERE Username = uname;
 END //
