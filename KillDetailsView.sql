@@ -3,8 +3,8 @@ Use test //
 CREATE VIEW KillDetails AS
     SELECT 
         k.ID AS Kill_ID,
-        k.KillerID AS KillerID,
-        k.Killed_ID AS Killed_ID,
+        k.KillerID AS Killer_ID,
+        k.KilledID AS Killed_ID,
         c1.C_name AS Killed_Name,
         c2.C_name AS Killer_Name,
         AVG(r.`Value`) AS Rating
