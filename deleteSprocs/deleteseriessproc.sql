@@ -4,7 +4,7 @@ Use test //
 DROP PROCEDURE IF EXISTS `SeriesDelete`//
 
 CREATE PROCEDURE `SeriesDelete` (
-	IN S_name_1 VARCHAR(30),
+	IN S_name_1 VARCHAR(30)
 )
 BEGIN
 	DELETE FROM Series
