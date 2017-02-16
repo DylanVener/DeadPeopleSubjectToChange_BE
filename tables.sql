@@ -6,6 +6,8 @@ CREATE TABLE Kills (
     KillerID MEDIUMINT,
     KilledID MediumInt,
     Img_URL VARCHAR(255),
+    Issue VARCHAR(50),
+    Dsc VARCHAR(255),
     FOREIGN KEY (KillerID)
     REFERENCES Characters(ID),
     FOREIGN KEY (KilledID)
