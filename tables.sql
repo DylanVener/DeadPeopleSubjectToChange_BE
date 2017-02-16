@@ -33,6 +33,7 @@ CREATE TABLE Universes (
     Size VARCHAR(30),
     P_name VARCHAR(30),
     Img_URL VARCHAR(255),
+    Location VARCHAR(100),
     FOREIGN KEY (P_name)
     REFERENCES Publishers(P_name),
     PRIMARY KEY (U_name)
