@@ -13,6 +13,6 @@ BEGIN
 	IF(count)<>1
     THEN SELECT 401;
     ELSE
-		SELECT 500;
+		SELECT Role FROM Users WHERE Username;
         END IF;
         END //
