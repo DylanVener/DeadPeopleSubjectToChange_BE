@@ -4,8 +4,8 @@ USE test //
 DROP Procedure IF EXISTS `UserLogin`//
 
 CREATE Procedure `UserLogin`(
- 	IN uname char(30),
- 	IN pass	char(32)
+ 	IN uname varchar(30),
+ 	IN pass	char(64)
 )
 BEGIN 
 	DECLARE count SMALLINT;
@@ -13,6 +13,6 @@ BEGIN
 	IF(count)<>1
     THEN SELECT 401;
     ELSE
-		SELECT Role FROM Users WHERE Username;
+		SELECT Role FROM Users WHERE Username=uname;
         END IF;
         END //

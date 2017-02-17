@@ -1,13 +1,12 @@
 DELIMITER //
 USE test //
-
-DROP Procedure IF EXISTS `validate`//
-
-CREATE Procedure `validate`(
- 	IN uname varchar(30)
+DROP PROCEDURE IF EXISTS `validateUser`//
+CREATE PROCEDURE `validateUser` (
+    IN uname VARCHAR(30)
 )
 BEGIN
-	SELECT Role
+    SELECT Role
     FROM Users
     WHERE Username = uname;
 END //
+

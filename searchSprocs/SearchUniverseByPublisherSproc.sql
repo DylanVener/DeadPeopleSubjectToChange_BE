@@ -8,7 +8,7 @@ CREATE PROCEDURE `SearchUniverseByPublisher` (
     )
 BEGIN
 	SELECT * 
-    FROM Universe
+    FROM Universes
     WHERE P_name = pub;
 END //
 

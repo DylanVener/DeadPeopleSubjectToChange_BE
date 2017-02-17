@@ -73,21 +73,21 @@ def main():
     return 'Hello, World!'
 
 @cross_origin()
-@app.route('/create', methods=['GET'])
+@app.route('/create', methods=['POST'])
 def create():
     con = mysql.connect()
     cursor = con.cursor()
 
     username = get_jwt_identity()
-    cursor.callproc('sp_validate',[username])
-    userType = list(cursor.fetchone().keys())[0]
-    if userType != 'admin':
-        return jsonify({'failure':'Incorrect Permissions'}), 401
+    #cursor.callproc('validateUser',[username])
+    #userType = list(cursor.fetchone().keys())[0]
+    #if userType != 'admin':
+    #    return jsonify({'failure':'Incorrect Permissions'}), 401
 
     data = request.get_json()
 
-    inputs = list(map(lambda x : escape_string(clean(x)), data.values()))
     types = clean(data.pop('type',None))
+    inputs = list(map(lambda x : escape_string(clean(x)), data.values()))
     if types == 'cape':
         cursor.callproc('CharacterCreate',inputs)
     elif types == 'universe':
@@ -97,11 +97,11 @@ def create():
     elif types == 'series':
         cursor.callproc('SeriesCreate',inputs)
     elif types == 'kills':
-        cursor.callproc('KillsCreate',inputs)
+        cursor.callproc('KillCreate',inputs)
     elif types == 'charSeries':
-        cursor.callproc('CharSeriesCreate',inputs)
+        cursor.callproc('CharacterSeriesCreate',inputs)
     elif types == 'rating':
-        cursor.callproc('RatingsCreate',inputs)
+        cursor.callproc('RatingCreate',inputs)
     ret = cursor.fetchall()
     con.commit()
     cursor.close()
@@ -116,10 +116,10 @@ def update():
     cursor = con.cursor()
 
     username = get_jwt_identity()
-    cursor.callproc('sp_validate',[username])
-    userType = list(cursor.fetchone().keys())[0]
-    if userType != 'admin':
-        return jsonify({'failure':'Incorrect Permissions'}), 401
+    #cursor.callproc('validateUser',[username])
+    #userType = list(cursor.fetchone().keys())[0]
+    #if userType != 'admin':
+    #    return jsonify({'failure':'Incorrect Permissions'}), 401
 
     data = request.get_json()
 
@@ -147,21 +147,22 @@ def update():
 
 
 @cross_origin()
-@app.route('/delete', methods=['GET'])
+@app.route('/delete', methods=['POST'])
 def delete():
     con = mysql.connect()
     cursor = con.cursor()
 
     username = get_jwt_identity()
-    cursor.callproc('sp_validate',[username])
-    userType = list(cursor.fetchone().keys())[0]
-    if userType != 'admin':
-        return jsonify({'failure':'Incorrect Permissions'}), 401
+    #cursor.callproc('validateUser',[username])
+    #userType = list(cursor.fetchone().keys())[0]
+    #if userType != 'admin':
+    #    return jsonify({'failure':'Incorrect Permissions'}), 401
 
     data = request.get_json()
 
-    inputs = list(map(lambda x : escape_string(clean(x)), data.values()))
+
     types = clean(data.pop('type',None))
+    inputs = list(map(lambda x : escape_string(clean(x)), data.values()))
     if types == 'cape':
         cursor.callproc('CharacterDelete',inputs)
     elif types == 'universe':
@@ -199,13 +200,11 @@ def search():
     elif types == 'publisher':
         cursor.callproc('PublisherSearch',[inputs])
     elif types == 'series':
-        cursor.callproc('SeriesSeach',[inputs])
+        cursor.callproc('SeriesSearch',[inputs])
     elif types == 'killsByVic':
         cursor.callproc('KillsSearchByKilledID',[inputs])
     elif types == 'killsByKiller':
         cursor.callproc('KillsSearchByKillerID',[inputs])
-    elif types == 'charSeriesPub':
-        cursor.callproc('csp',[inputs])
     elif types == 'charBySeries':
         cursor.callproc('SearchCharacterBySeries',[inputs])
     elif types == 'seriesByUniverse':
@@ -214,6 +213,8 @@ def search():
         cursor.callproc('SearchSeriesByPublisher',[inputs])
     elif types == 'universeByPub':
         cursor.callproc('SearchUniverseByPublisher',[inputs])
+    elif types == 'charSeriesPub':
+        cursor.callproc('csp',[inputs])
 
     ret = cursor.fetchall()
     cursor.close()

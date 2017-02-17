@@ -6,6 +6,7 @@ CREATE PROCEDURE `UniverseCreate` (
 	IN U_name_1 varchar(30), 
 	IN Size_1 varchar(30),
 	IN P_name_1 varchar(30),
+        IN Location_1 varchar(100),
     IN url varchar(255)
 )
 BEGIN

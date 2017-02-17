@@ -8,7 +8,7 @@ CREATE PROCEDURE `KillsSearchByKillerID` (
 )
 BEGIN
 	SELECT * 
-    FROM KillDetails
-    WHERE KillerID = killer;
+    FROM KillDetails2
+    WHERE Killer_ID = killer;
 END //
 

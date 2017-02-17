@@ -8,7 +8,7 @@ CREATE PROCEDURE `CharacterSeriesCreate` (
 	IN C_ID_1 MEDIUMINT
 )
 BEGIN
-	INSERT INTO Ratings(S_name, C_ID)
+	INSERT INTO CharacterSeries(S_name, C_ID)
 	VALUES(S_name_1, C_ID_1);
 END //
 
