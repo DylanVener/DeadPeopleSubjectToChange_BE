@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify 
 from bleach import clean
 from flask.ext.mysql import MySQL
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
@@ -110,7 +110,7 @@ def create():
 
 
 @cross_origin()
-@app.route('/update', methods=['GET'])
+@app.route('/update', methods=['POST'])
 def update():
     con = mysql.connect()
     cursor = con.cursor()
@@ -123,8 +123,8 @@ def update():
 
     data = request.get_json()
 
-    inputs = list(map(lambda x : escape_string(clean(x)), data.values()))
     types = clean(data.pop('type',None))
+    inputs = list(map(lambda x : escape_string(clean(x)), data.values()))
     if types == 'cape':
         cursor.callproc('CharacterUpdate',inputs)
     elif types == 'universe':

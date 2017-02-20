@@ -19,6 +19,8 @@ VALUES ('Deadpool Kills the Marvel Universe', (SELECT ID FROM Characters WHERE C
 INSERT INTO Kills (KillerID, KilledID, Img_URL, Issue, Dsc)
 VALUES ((SELECT ID FROM Characters WHERE C_name = 'Deadpool'),(SELECT ID FROM Characters WHERE C_name = 'Mister Fantastic'),null, 'Deadpool Kills the Marvel Universe Vol 1', 'Body completely melted by a machine'),((SELECT ID FROM Characters WHERE C_name = 'Deadpool'),(SELECT ID FROM Characters WHERE C_name = 'Psycho-Man'),null, 'Deadpool Kills the Marvel Universe Vol 1', 'Crushed on a table')//
 
+INSERT INTO Users (Username, Password, Role)
+VALUES ('a','961b6dd3ede3cb8ecbaacbd68de040cd78eb2ed5889130cceb4c49268ea4d506','admin')//
 
 INSERT INTO Ratings
 VALUES('a',1,4), ('a',2,3)//
