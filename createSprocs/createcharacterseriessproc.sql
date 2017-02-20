@@ -11,4 +11,3 @@ BEGIN
 	INSERT INTO CharacterSeries(S_name, C_ID)
 	VALUES(S_name_1, C_ID_1);
 END //
-
