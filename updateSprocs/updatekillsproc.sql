@@ -20,6 +20,6 @@ BEGIN
 		WHERE
 			`ID` = killid;
 			SELECT '200';
-            END;
+            END
 		END IF;
 END //
