@@ -9,19 +9,19 @@ CREATE Procedure `KillUpdate`(
 BEGIN
 	IF (SELECT COUNT(*) FROM `Kills` WHERE ID = id) = 0
     THEN
-		SELECT '404'
+		SELECT '404';
     ELSE IF (SELECT COUNT(*) FROM `Characters` WHERE ID = Killer OR ID = Killed) <> 2
     THEN
-		SELECT '404'
-    else 
-		UPDATE `Kills` 
+		SELECT '404';
+    Else 
+		UPDATE Kills
 		SET 
-			`KillerID` = Killer,
-			`KilledID` = Killed,
-            `Issue` = diedinissue,
-            `Desc` = description
+			KillerID = Killer,
+			KilledID = Killed,
+            Issue = diedinissue,
+            Dsc = description
 		WHERE
 			`ID` = killid;
 			SELECT '200';
 		END IF;
-END;
+END//
