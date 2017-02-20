@@ -105,7 +105,7 @@ CREATE TABLE Ratings (
     Value INT,
     FOREIGN KEY (Username)
     REFERENCES Users(Username)
-    ON DELETE SET NULL 
+    ON DELETE CASCADE 
     ON UPDATE CASCADE,
     FOREIGN KEY (KID)
     REFERENCES Kills(ID)
