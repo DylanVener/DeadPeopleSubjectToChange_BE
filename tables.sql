@@ -100,7 +100,7 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE Ratings (
-    Username VARCHAR(30) NOT NULL,
+    Username VARCHAR(30),
     KID MEDIUMINT NOT NULL,
     Value INT,
     FOREIGN KEY (Username)
