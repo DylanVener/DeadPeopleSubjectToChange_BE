@@ -14,9 +14,9 @@ BEGIN
     THEN
 		SELECT '404';
     ELSE 
-			IF pword <> '' THEN Set p_word = pword;
-			IF role <> ''THEN Set r = role;
-			UPDATE Users 
+		IF pword <> '' THEN Set p_word = pword; END IF;
+		IF role <> ''THEN Set r = role; END IF;
+		UPDATE Users 
 SET 
     `Password` = p_word,
     `Role` = r

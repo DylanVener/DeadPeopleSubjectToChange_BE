@@ -11,9 +11,9 @@ BEGIN
 	DECLARE c_name varchar(30) DEFAULT (SELECT C_name FROM `Characters` WHERE ID = id);
     DECLARE i_url varchar(30) DEFAULT (SELECT Img_URL FROM `Characters` WHERE ID = id);
     
-    IF pname <> '' THEN Set p_name = pname;
-    IF (cname <> '')THEN Set c_name = cname;
-	IF url <> ''THEN SET i_url =  url;
+    IF pname <> '' THEN Set p_name = pname; END IF;
+    IF (cname <> '')THEN Set c_name = cname; END IF;
+	IF url <> ''THEN SET i_url =  url; END IF;
 UPDATE Characters 
 SET 
     P_name = p_name,
@@ -21,4 +21,4 @@ SET
     Img_URL = i_url
 WHERE
     ID = id;
-END//
+END //
