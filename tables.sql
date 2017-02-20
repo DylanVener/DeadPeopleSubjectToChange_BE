@@ -24,7 +24,7 @@ CREATE TABLE Universes (
     Location VARCHAR(100),
     FOREIGN KEY (P_name)
     REFERENCES Publishers(P_name)
-    ON DELETE CASCADE
+    ON DELETE RESTRICT 
     ON UPDATE CASCADE,
     PRIMARY KEY (U_name)
 );
@@ -37,6 +37,13 @@ CREATE TABLE Characters (
     PRIMARY KEY(ID)
 );
 
+CREATE INDEX PNameIndex
+ON Characters (P_name);
+
+CREATE INDEX CNameIndex
+ON Characters (C_name);
+
+
 CREATE TABLE Series (
     S_name VARCHAR(30),
     U_name VARCHAR(30),
@@ -44,11 +51,11 @@ CREATE TABLE Series (
     Img_URL VARCHAR(255),
     FOREIGN KEY (U_name)
     REFERENCES Universes(U_name)
-    ON DELETE CASCADE
+    ON DELETE RESTRICT 
     ON UPDATE CASCADE,
     FOREIGN KEY (P_name)
     REFERENCES Publishers(P_name)
-    ON DELETE CASCADE
+    ON DELETE RESTRICT
     ON UPDATE CASCADE,
     PRIMARY KEY (S_name)
 );
@@ -98,11 +105,11 @@ CREATE TABLE Ratings (
     Value INT,
     FOREIGN KEY (Username)
     REFERENCES Users(Username)
-    ON DELETE CASCADE
+    ON DELETE SET NULL 
     ON UPDATE CASCADE,
     FOREIGN KEY (KID)
     REFERENCES Kills(ID)
-    ON DELETE CASCADE
+    ON DELETE SET NULL
     ON UPDATE CASCADE,
     CONSTRAINT unID PRIMARY KEY(Username, KID)
 );
