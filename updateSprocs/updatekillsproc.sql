@@ -10,6 +10,7 @@ BEGIN
 	IF ((SELECT COUNT(*) FROM `Kills` WHERE ID = id) = 0)THEN SELECT '404';
     ELSE IF ((SELECT COUNT(*) FROM `Characters` WHERE ID = Killer OR ID = Killed) <> 2 )THEN SELECT '404';
     Else 
+    BEGIN
 		UPDATE Kills
 		SET 
 			KillerID = Killer,
@@ -20,4 +21,5 @@ BEGIN
 			`ID` = killid;
 			SELECT '200';
 		END IF;
+        END
 END //
