@@ -7,12 +7,8 @@ CREATE Procedure `UniversesUpdate`(
  	IN oldname varchar(30),  IN newname varchar(30),IN size varchar(30), IN location varchar(100),IN pname varchar(30), IN url varchar(255)
 )
 BEGIN
-	IF (SELECT COUNT(*) FROM `Universes` WHERE U_name = uname) = 0
-    THEN BEGIN
-	    	SELECT '404';
-            END IF;
+	IF ((SELECT COUNT(*) FROM `Universes` WHERE U_name = uname) = 0)THEN SELECT '404';
     ELSE 
-        BEGIN
 		UPDATE `Ratings` 
 		SET 
 			`U_name`=newname,
