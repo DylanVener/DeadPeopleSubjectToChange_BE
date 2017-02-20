@@ -110,7 +110,7 @@ def create():
 
 
 @cross_origin()
-@app.route('/update', methods=['GET'])
+@app.route('/update', methods=['POST'])
 def update():
     con = mysql.connect()
     cursor = con.cursor()
