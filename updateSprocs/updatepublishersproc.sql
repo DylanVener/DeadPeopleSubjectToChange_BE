@@ -9,14 +9,14 @@ CREATE Procedure `PublishersUpdate`(
 BEGIN
 	IF (SELECT COUNT(*) FROM `Publishers` WHERE P_name= pname) = 0
     THEN
-		SELECT '404'
+		SELECT '404';
     ELSE 
 		UPDATE `Publishers` 
 		SET 
-			`H_name` = hname,
-            `Img_URL`=url
+			H_name = hname,
+            Img_URL=url
 		WHERE
-			`P_name` = pname;
+			P_name = pname;
 			SELECT '200';
 		END IF;
-END;
+END//

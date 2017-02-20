@@ -24,7 +24,7 @@ BEGIN
     THEN BEGIN
     SET i_url =  url;
     END IF;
-UPDATE `Characters` 
+UPDATE Characters 
 SET 
     P_name = p_name,
     C_name = c_name,

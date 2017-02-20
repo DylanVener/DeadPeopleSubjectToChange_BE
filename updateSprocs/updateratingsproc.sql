@@ -9,13 +9,12 @@ CREATE Procedure `RatingsUpdate`(
 BEGIN
 	IF (SELECT COUNT(*) FROM `Rating` WHERE KID = killid AND Username = uname) = 0
     THEN
-		SELECT '404'
+		SELECT '404';
     ELSE 
 		UPDATE `Ratings` 
-		SET 
-			`Value` = val
+		SET `Value` = val
 		WHERE
 			`KID` = killid;
 			SELECT '200';
 		END IF;
-END;
+END//
