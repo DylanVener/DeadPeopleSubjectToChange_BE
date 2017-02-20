@@ -20,4 +20,4 @@ BEGIN
 			`ID` = killid;
 			SELECT '200';
 		END IF;
-END//
+END //
